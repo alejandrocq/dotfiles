@@ -1,0 +1,15 @@
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="gentoo"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+alias ll='ls -al'
+alias la='ls -aA'
+alias l='ls -aCF'
+alias odh='od -Ax -tx1z -v'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias df='df -h'

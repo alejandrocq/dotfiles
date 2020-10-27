@@ -2,7 +2,7 @@
 echo "🍻 Let's install some awesome dotfiles..."
 cd ~
 
-[[ -d .oh-my-zsh ]] && echo 'oh-my-zsh already installed ✅' || sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+[[ -d .oh-my-zsh ]] && echo 'oh-my-zsh already installed ✅' || CHSH=yes RUNZSH=no sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 [[ $? -ne 0 ]] && echo 'oh-my-zsh installation failed ❌' && exit 1
 
 RESPONSE="N"
@@ -19,6 +19,7 @@ if [[ $RESPONSE == "Y" ]]; then
 	ln -s .dotfiles/zsh/ .zsh
 
 	echo "Installation completed! Enjoy 😁"
+	exec zsh
 else
 	echo "Installation cancelled! 😕"
 fi

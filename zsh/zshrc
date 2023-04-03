@@ -12,8 +12,8 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-alias ll='ls -alh'
-alias l='ls -aCF'
+alias ll='lsd -alh'
+alias l='lsd -aCF'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -42,3 +42,6 @@ fd() {
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
+
+# fzf shortcuts
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

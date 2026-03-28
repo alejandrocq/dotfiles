@@ -10,16 +10,26 @@ if [ ! "$(command -v fzf)" ] || [ ! "$(command -v bat)" ] || [ ! "$(command -v n
   exit 1
 fi
 
-[[ -d .oh-my-zsh ]] && echo '✅ oh-my-zsh already installed' || CHSH=yes RUNZSH=no sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-[[ $? -ne 0 ]] && echo '❌ oh-my-zsh installation failed' && exit 1
-
-[[ -e .p10k.zsh ]] && echo '✅ powerlevel10k already installed' || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-[[ $? -ne 0 ]] && echo '❌ powerlevel10k installation failed' && exit 1
+if [ ! "$(command -v starship)" ]; then
+  echo "Installing starship..."
+  curl -sS https://starship.rs/install.sh | sh
+  [[ $? -ne 0 ]] && echo '❌ starship installation failed' && exit 1
+else
+  echo '✅ starship already installed'
+fi
 
 RESPONSE="N"
 read -rp '⚠️  Are you sure you want to delete the dotfiles and zshrc directories, and all their content? (Y/N) ' RESPONSE
 
 if [ "$RESPONSE" == "Y" ]; then
+	if [ -d .zsh ] && [ ! -L .zsh ]; then
+		cp -r .zsh /tmp/zsh.bak
+		echo "✅ Backed up .zsh directory to /tmp/zsh.bak"
+	elif [ -L .zsh ] && [ -f .zsh/zshrc_custom ]; then
+		cp .zsh/zshrc_custom /tmp/zshrc_custom.bak
+		echo "✅ Backed up zshrc_custom to /tmp/zshrc_custom.bak"
+	fi
+
 	rm -rf .dotfiles
 	git clone https://github.com/alejandrocq/dotfiles.git || (echo "Can't clone dotfiles repository ❌" && exit 1)
 	mv dotfiles .dotfiles
@@ -27,10 +37,18 @@ if [ "$RESPONSE" == "Y" ]; then
 	rm -rf .zshrc .zsh
 	ln -s .dotfiles/zsh/zshrc .zshrc
 	ln -s .dotfiles/zsh/ .zsh
-	ln -s .dotfiles/zsh/p10k.zsh .p10k.zsh
+
+	if [ -d /tmp/zsh.bak ]; then
+		cp -r /tmp/zsh.bak/. .zsh/
+		echo "✅ Restored .zsh directory contents"
+	elif [ -f /tmp/zshrc_custom.bak ]; then
+		cp /tmp/zshrc_custom.bak .zsh/zshrc_custom
+		echo "✅ Restored zshrc_custom"
+	fi
 
 	mkdir -p .config/nvim/
 	ln -s ~/.dotfiles/nvim/init.vim .config/nvim/init.vim
+	ln -s ~/.dotfiles/starship/starship.toml .config/starship.toml
 
 	echo "Installation completed! Enjoy 😁"
 	exec zsh

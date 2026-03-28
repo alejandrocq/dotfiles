@@ -31,7 +31,7 @@ if [ "$RESPONSE" == "Y" ]; then
 	fi
 
 	rm -rf .dotfiles
-	git clone -b claude/evaluate-starship-migration-zadU0 https://github.com/alejandrocq/dotfiles.git || (echo "Can't clone dotfiles repository ❌" && exit 1)
+	git clone -b starship https://github.com/alejandrocq/dotfiles.git || (echo "Can't clone dotfiles repository ❌" && exit 1)
 	mv dotfiles .dotfiles
 
 	rm -rf .zshrc .zsh

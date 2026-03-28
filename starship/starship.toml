@@ -111,6 +111,11 @@ symbol = " "
 [ocaml]
 symbol = " "
 
+[os]
+format = "[$symbol]($style)"
+style = "bold white"
+disabled = false
+
 [os.symbols]
 Alpaquita = " "
 Alpine = " "

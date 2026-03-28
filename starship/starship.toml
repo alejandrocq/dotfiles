@@ -114,6 +114,7 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
+format = "󰉋 [$path]($style)[$read_only]($read_only_style) "
 
 [docker_context]
 symbol = " "
@@ -293,6 +294,7 @@ symbol = " "
 symbol = " "
 
 [battery]
+format = " [$symbol$percentage]($style) "
 full_symbol = "󰁹 "
 charging_symbol = "󰂄 "
 discharging_symbol = "󰂃 "
@@ -301,15 +303,19 @@ empty_symbol = "󰂎 "
 
 [[battery.display]]
 threshold = 10
-style = "bold red"
+style = "bold bright_red"
 
 [[battery.display]]
 threshold = 30
-style = "yellow"
+style = "bright_yellow"
 
 [[battery.display]]
 threshold = 100
-style = "dimmed green"
+style = "green"
+
+[fill]
+symbol = "─"
+style = "bold dimmed white"
 
 [time]
 disabled = false

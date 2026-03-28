@@ -1,7 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$os\
 $username\
 $hostname\
 $localip\
@@ -79,6 +78,7 @@ $line_break\
 $jobs\
 $status\
 $container\
+$os\
 $shell\
 $character"""
 
@@ -195,7 +195,7 @@ symbol = " "
 symbol = " "
 
 [os]
-format = "[ $symbol ]($style)"
+format = "[$symbol]($style)"
 style = "bold white"
 disabled = false
 

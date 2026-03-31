@@ -75,9 +75,9 @@ $custom\
 $sudo\
 $cmd_duration\
 $fill\
+$time\
 $jobs\
 $battery\
-$time\
 $line_break\
 $status\
 $container\
@@ -340,7 +340,7 @@ format = "[$symbol$number]($style) "
 style = "bold blue"
 
 [battery]
-format = " [$symbol$percentage]($style) "
+format = "[$symbol$percentage]($style) "
 full_symbol = "󰁹 "
 charging_symbol = "󰂄 "
 discharging_symbol = "󰂃 "

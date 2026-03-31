@@ -359,6 +359,13 @@ style = "bright_yellow"
 threshold = 100
 style = "green"
 
+[username]
+style_user = "bold blue"
+style_root = "bold red"
+format = "󰀄 [$user]($style) "
+disabled = false
+show_always = true
+
 [fill]
 symbol = "─"
 style = "bold dimmed white"

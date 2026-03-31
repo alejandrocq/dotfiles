@@ -369,6 +369,7 @@ show_always = true
 [fill]
 symbol = "─"
 style = "bold dimmed white"
+format = "[$symbol]($style) "
 
 [time]
 disabled = false
